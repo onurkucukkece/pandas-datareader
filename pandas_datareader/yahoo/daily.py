@@ -115,7 +115,8 @@ class YahooDailyReader(_DailyBaseReader):
 
     @property
     def url(self):
-        return "https://finance.yahoo.com/quote/{}/history"
+        # https://query1.finance.yahoo.com/v7/finance/download/AAPL?&events=history&includeAdjustedClose=true
+        return "https://query1.finance.yahoo.com/v7/finance/download/{}"
 
     # Test test_get_data_interval() crashed because of this issue, probably
     # whole yahoo part of package wasn't
@@ -134,7 +135,7 @@ class YahooDailyReader(_DailyBaseReader):
             "period2": unix_end,
             "interval": self.interval,
             "frequency": self.interval,
-            "filter": "history",
+            "events": "history",
             "symbol": symbol,
         }
         return params
